@@ -1,0 +1,44 @@
+.Input
+  &, input
+    width: 100%
+    line-height: 16px
+    padding: 12px
+    object-fit: contain
+    border-radius: 3px
+    background-color: #f5f6fa
+    border: solid 1px #e8eaf1
+    font-size: 14px
+    font-weight: 500
+    text-align: left
+    color: #12203e
+    transition: all .4s
+  &:focus, &:active
+    border: solid 1px #aac3f1
+    outline: none
+  input
+    border: none
+    padding: 0
+    &:focus, &:active
+      border: none
+      outline: none
+  &-wrapper
+    position: relative
+    width: 100%
+  &-icon
+    position: absolute
+    top: 50%
+    right: 12px
+    transform: translateY(-50%)
+    $size: 14px
+    display: inline-block
+    font-size: $size
+    vertical-align: middle
+    color: #89beca
+    width: $size
+    height: $size
+    line-height: $size
+    &:before
+      vertical-align: top
+  &--active
+    position: relative
+    z-index: 1099

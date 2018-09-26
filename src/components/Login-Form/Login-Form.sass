@@ -1,0 +1,58 @@
+.Label
+  object-fit: contain
+  font-size: 14px
+  font-weight: 500
+  text-align: left
+  color: #12203e
+  transition: all .4s
+  &--checkbox
+    object-fit: contain
+    font-size: 12px
+    text-align: left
+    color: #c1c1c1
+    display: inline-block
+    vertical-align: middle
+    margin-bottom: 0
+    &:hover
+      color: #848484
+.Form-group
+  max-width: 100%
+  position: relative
+  padding-bottom: 12px
+  &--checkbox
+    padding-bottom: 0
+    position: absolute
+    bottom: 30px
+    left: 30px
+  &--error
+    .Input
+    border-color: #ff4c2a
+    .Error
+      opacity: 1
+      visibility: visible
+.Button
+  color: #12203e
+  border: none
+  outline: none
+  transition: all .4s
+  &:focus, &:active
+    outline: none
+  &:hover
+    background-color: #fbda00
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3)
+    color: #1c3761
+    cursor: pointer
+
+.Error
+  font-size: 11px
+  line-height: 12px
+  color: #ff4c2a
+  opacity: 0
+  visibility: hidden
+  position: absolute
+  right: 0
+  top: 7px
+  font-weight: 500
+  z-index: 1
+  background: #ffffff
+  padding: 2px 4px
