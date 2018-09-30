@@ -9,4 +9,4 @@ If the Yarn package isn't:
 
 # Started
 
-`yarn start` and `yarn watch-css`
+`yarn start-proxy`, `yarn start` and `yarn watch-css`

@@ -5,28 +5,23 @@ import { connect } from 'react-redux';
 // PAGES
 import Login from './containers/Login/Login';
 import PageError404 from './containers/Page-Error-404/Page-Error-404';
+import Dashboard from './containers/Dashboard/Dashboard';
 
 if (process.env.NODE_ENV === 'development') {
   require('dotenv');
 }
 
 class AppRouter extends Component {
-  componentWillMount() {
-    if (localStorage.getItem('access_token')) {
-      this.props.getUserInfo();
-    }
-  }
-  
   renderRouter() {
-    if (!!localStorage.getItem('access_token') && this.props.userInfo && this.props.userInfo.userResource) {
+    if (!!localStorage.getItem('token')) {
       return (
         <Switch>
-          <Route path="/login" component={ Login } />
-          <Route path="/" exact={true} render={() => <Redirect to={ Login } />}/>
+          <Route path="/dashboard" component={ Dashboard } />
+          <Route path="/" exact render={() => <Redirect to={'/dashboard'} /> } />
           <Route path="*" component={ PageError404 } />
         </Switch>
       );
-    } else if (!localStorage.getItem('access_token') || localStorage.getItem('access_token') === '') {
+    } else if (!localStorage.getItem('token') || localStorage.getItem('token') === '') {
       return <Switch>
         <Route path="*" component={ Login } />
       </Switch>;
@@ -44,17 +39,14 @@ const mapStateToProps = ({ globalReducers }) => {
   const {
     defaultErrorMessageStatus,
     defaultErrorMessage,
-    files,
   } = globalReducers;
   return {
     defaultErrorMessageStatus,
     defaultErrorMessage,
-    files,
   };
 };
 
 export default withRouter(connect(mapStateToProps, {
-  
 })(
   AppRouter
 ));

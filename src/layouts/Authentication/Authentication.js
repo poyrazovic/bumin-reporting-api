@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 
 import './Authentication.css';
-import {connect} from 'react-redux';
-import {closeDefaultErrorMessage} from '../../redux/actions';
+import { connect } from 'react-redux';
+import { closeDefaultErrorMessage } from '../../redux/actions';
 import Message from '../../components/Message/Message';
 
 class Authentication extends Component {
   errorMessage() {
-    // let {defaultErrorMessage, defaultErrorMessageStatus} = store.getState();
     if (this.props.defaultErrorMessageStatus) {
       let title   = 'HATA!';
       let message = this.props.defaultErrorMessage;
@@ -17,16 +16,16 @@ class Authentication extends Component {
       }
       return <Message
         size={'md'}
-        title={<div>
-          <h5 className="modal-title Default-title mb-1">{title}</h5>
-        </div>}
-        messageStatus={this.props.defaultErrorMessageStatus}
+        title={
+          <h5 className="modal-title Default-title mb-1">{ title }</h5>
+        }
+        messageStatus={ this.props.defaultErrorMessageStatus }
         closeMessage={() => {
           this.props.closeDefaultErrorMessage();
         }}
       >
         <div className={'position-relative'}>
-          {message}
+          { message }
         </div>
       </Message>;
     }

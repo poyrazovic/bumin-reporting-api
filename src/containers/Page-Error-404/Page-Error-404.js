@@ -6,8 +6,10 @@ import Default from '../../layouts/Default/Default';
 
 class PageError404 extends Component {
   render() {
-    return <Default>
-      <p>Error 404!</p>
+    return <Default pageTitle="Error 404!">
+      <div className="Page-Error-404">
+        <p>Test</p>
+      </div>
     </Default>;
   }
 }

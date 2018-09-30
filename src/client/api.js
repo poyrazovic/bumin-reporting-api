@@ -1,4 +1,4 @@
-let _API = 'https://sandbox-reporting.rpdpymnt.com/api/v3/';
+let _API = 'http://localhost:8010/proxy/';
 if (process.env && process.env.REACT_APP_DEV_API_URL && process.env.NODE_ENV === 'development') {
   _API = process.env.REACT_APP_DEV_API_URL
 }

@@ -1,13 +1,42 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
-import $ from 'jquery';
-import './Login-Form.css';
 import { required } from '../../redux/form-validations';
 import { sendLoginForm } from '../../redux/actions';
+import $ from 'jquery';
 import Input from '../Form-Elements/Input/Input';
+import Checkbox from '../Form-Elements/Checkbox/Checkbox';
+import './Login-Form.css';
 
 export class LoginForm extends Component {
+  componentDidMount() {
+    window.addEventListener('load', this.handleLoad.bind(this));
+    $('#email').focus();
+    let email = this.getEmail();
+    email = email || '';
+    this.props.change('email', email);
+  }
+
+  getEmail() {
+    const email = String(localStorage.getItem('email'));
+    if (!!email && email !== '' && email !== 'null') {
+      return email;
+    }
+    return '';
+  }
+
+  handleLoad() {
+    this.updateRemaining();
+  }
+
+  updateRemaining() {
+    const email = String(localStorage.getItem('email'));
+    if (email && email !== '' && email !== 'null') {
+      $('input[name="remaining"]').prop('checked', true);
+    }
+    return '';
+  }
+
   render() {
     const { handleSubmit } = this.props;
     return (
@@ -45,6 +74,16 @@ export class LoginForm extends Component {
             />
             <span className="Error">Şifre giriniz!</span>
           </div>
+          <div className="Form-group Form-group--checkbox mb-3">
+            <Checkbox
+              name="remaining"
+              id="remaining"
+              size={'small'}
+            />
+            <label className="Label Label--checkbox" htmlFor="remaining">
+              Beni Hatırla
+            </label>
+          </div>
           <div className="Form-group">
             <button type="submit" className="btn btn-primary">
               Giriş Yap
@@ -53,13 +92,6 @@ export class LoginForm extends Component {
         </form>
       </div>
     );
-  }
-
-  componentDidMount() {
-    $('#email').focus();
-    let email = this.getEmail();
-    email = email || '';
-    this.props.change('email', email)
   }
 
   submit(data) {
@@ -77,15 +109,8 @@ export class LoginForm extends Component {
       return;
     }
     $('.Login-Form').find('input, textarea, button').blur();
+    data.remaining = $('input[name="remaining"]:checked').length > 0;
     this.props.sendLoginForm(data);
-  }
-
-  getEmail() {
-    const email = String(localStorage.getItem('email'));
-    if (!!email && email !== '' && email !== 'null') {
-      return email;
-    }
-    return '';
   }
 }
 

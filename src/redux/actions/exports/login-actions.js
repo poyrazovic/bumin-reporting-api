@@ -25,9 +25,7 @@ const sendFormSuccess = (dispatch, data, response) => {
   } else {
     localStorage.removeItem('email');
   }
-  localStorage.setItem('token', JSON.stringify(response.data));
-  localStorage.setItem('access_token', response.data['access_token']);
-  localStorage.setItem('refresh_token', response.data['refresh_token']);
+  localStorage.setItem('token', response.data.token);
   dispatch({
     type: LOGIN_FORM_SUCCESS,
     auth: response.data,
@@ -49,4 +47,3 @@ const sendFormError = (dispatch, data, error) => {
     message,
   });
 };
-
