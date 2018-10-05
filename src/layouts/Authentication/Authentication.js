@@ -4,6 +4,7 @@ import './Authentication.css';
 import { connect } from 'react-redux';
 import { closeDefaultErrorMessage } from '../../redux/actions';
 import Message from '../../components/Message/Message';
+import Header from '../../components/Header/Header';
 
 class Authentication extends Component {
   errorMessage() {
@@ -24,7 +25,7 @@ class Authentication extends Component {
           this.props.closeDefaultErrorMessage();
         }}
       >
-        <div className={'position-relative'}>
+        <div className="position-relative">
           { message }
         </div>
       </Message>;
@@ -34,14 +35,18 @@ class Authentication extends Component {
   
   render() {
     return (
-      <div className="Authentication">
-        <div className="Content bg-white">
-          { this.props.children }
-          {
-            this.errorMessage()
-          }
+      <div>
+        <Header />
+        <div className="Authentication">
+          <div className="Content bg-white">
+            { this.props.children }
+            {
+              this.errorMessage()
+            }
+          </div>
         </div>
       </div>
+      
     );
   }
 }

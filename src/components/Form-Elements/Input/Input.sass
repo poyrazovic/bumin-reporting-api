@@ -2,9 +2,8 @@
   &, input
     width: 100%
     line-height: 16px
-    padding: 12px
     object-fit: contain
-    border-radius: 3px
+    border-radius: 0
     background-color: #f5f6fa
     border: solid 1px #e8eaf1
     font-size: 14px
@@ -13,17 +12,18 @@
     color: #12203e
     transition: all .4s
   &:focus, &:active
-    border: solid 1px #aac3f1
     outline: none
   input
     border: none
-    padding: 0
+    padding: 12px
     &:focus, &:active
       border: none
       outline: none
   &-wrapper
     position: relative
     width: 100%
+    input
+      padding: 12px
   &-icon
     position: absolute
     top: 50%

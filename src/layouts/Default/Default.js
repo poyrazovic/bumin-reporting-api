@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import Header from '../../components/Header/Header';
 import './Default.css';
 
@@ -9,17 +10,17 @@ class Default extends Component {
       return (
         <div className="Default-leftPanel col-md-4 bg-white">
           <nav>
-            <a href="">Dashboard</a>
-            <a href="">Transactions Report</a>
-            <a href="">Transactions List</a>
-            <a href="">Information or Transactions</a>
-            <a href="">Client</a>
+            <NavLink to="/dashboard" activeClassName="active">Dashboard</NavLink>
+            <NavLink to="/transaction-report" activeClassName="active">Transaction Report</NavLink>
+            <NavLink to="/transaction-list" activeClassName="active">Transaction List</NavLink>
+            <NavLink to="/transaction" activeClassName="active">Transaction</NavLink>
+            <NavLink to="/client" activeClassName="active">Client</NavLink>
           </nav>
         </div>
       );
     }
   }
-  
+
   render() {
     return (
       <div className="Default">

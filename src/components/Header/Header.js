@@ -2,25 +2,27 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { history } from '../../helpers';
+import { userLogout } from '../../redux/actions';
 import './Header.css';
 
 class Header extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      logout: false,
+  logout() {
+    if(!this.props.loginStatus) {
+      return <Redirect to={'/login'} />;
     }
-    this.logout = this.logout.bind(this);
-    console.log('state', this.state.logout);
   }
 
-  logout() {
-    this.setState({
-      logout: true,
-    });
-    if(this.state.logout) {
-      console.log('state', this.state.logout);
-      return <Redirect to={'/login'} />;
+  logoutButton() {
+    if(localStorage.getItem('token')) {
+      return (
+        <button className="btn btn-primary" onClick={() => {
+          localStorage.removeItem('token');
+          localStorage.removeItem('username');
+          this.props.userLogout();
+          this.logout();
+          history.push('/');
+        }}>Logout</button>
+      );
     }
   }
 
@@ -32,14 +34,11 @@ class Header extends Component {
             <div className="col-md-10">
               <h1>Bumin Reporting API</h1>
             </div>
-            <div className="col-md-10 text-right">
-              <button className="btn btn-primary" onClick={() => {
-                localStorage.removeItem('token');
-                this.logout();
-                setTimeout(() => {
-                  history.push('/login');
-                }, 100);
-              }}>Cikis Yap</button>
+            <div className="col-md-10">
+              <div className="float-right">
+                <span className="mr-4">{ localStorage.getItem('username') ? localStorage.getItem('username') : '' }</span>
+                { this.logoutButton() }
+              </div>
             </div>
           </div>
         </div>
@@ -50,11 +49,17 @@ class Header extends Component {
 
 const mapStateToProps = ({ loginReducers }) => {
   const {
+    loginStatus,
+    user,
   } = loginReducers;
   return {
+    loginStatus,
+    user,
   };
 };
 
-export default connect(mapStateToProps, {})(
+export default connect(mapStateToProps, {
+  userLogout,
+})(
   Header
 );

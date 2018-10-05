@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import { required } from '../../redux/form-validations';
-import { sendLoginForm } from '../../redux/actions';
+import { sendLoginForm, userLogin } from '../../redux/actions';
 import $ from 'jquery';
 import Input from '../Form-Elements/Input/Input';
 import Checkbox from '../Form-Elements/Checkbox/Checkbox';
@@ -48,7 +48,7 @@ export class LoginForm extends Component {
         >
           <div className="Form-group Form-group--email">
             <label className="Label" htmlFor="email">
-              Kullanıcı Adınız
+              E-Mail
             </label>
             <Input
               className="Input"
@@ -59,11 +59,11 @@ export class LoginForm extends Component {
               component="input"
               type="text"
             />
-            <span className="Error">Kullanıcı adı giriniz!</span>
+            <span className="Error">Required!</span>
           </div>
           <div className="Form-group Form-group--password">
             <label className="Label" htmlFor="password">
-              Şifreniz
+              Password
             </label>
             <Input
               className="Input"
@@ -72,7 +72,7 @@ export class LoginForm extends Component {
               component="input"
               type="password"
             />
-            <span className="Error">Şifre giriniz!</span>
+            <span className="Error">Required!</span>
           </div>
           <div className="Form-group Form-group--checkbox mb-3">
             <Checkbox
@@ -111,6 +111,7 @@ export class LoginForm extends Component {
     $('.Login-Form').find('input, textarea, button').blur();
     data.remaining = $('input[name="remaining"]:checked').length > 0;
     this.props.sendLoginForm(data);
+    this.props.userLogin();
   }
 }
 
@@ -131,6 +132,7 @@ const mapStateToProps = ({ loginReducers }) => {
 
 export default connect(mapStateToProps, {
   sendLoginForm,
+  userLogin,
 })(
   reduxForm({
     form: 'login'

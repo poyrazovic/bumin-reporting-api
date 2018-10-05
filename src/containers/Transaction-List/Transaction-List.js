@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Default from '../../layouts/Default/Default';
 
-class Dashboard extends Component {
-  
+class TransactionList extends Component {
   render() {
     return (
-      <Default leftPanel pageTitle={'Dashboard'}>
-        <div className="Dashboard">
-          
+      <Default leftPanel pageTitle={'Transaction List'}>
+        <div className="TransactionList">
+
         </div>
       </Default>
     );
@@ -20,5 +19,5 @@ const mapStateToProps = ({}) => {
 };
 
 export default connect(mapStateToProps, {})(
-  Dashboard
+  TransactionList
 );

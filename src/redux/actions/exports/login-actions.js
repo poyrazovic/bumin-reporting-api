@@ -3,6 +3,7 @@ import {
   LOGIN_FORM_SEND,
   LOGIN_FORM_SUCCESS,
   LOGIN_FORM_ERROR,
+  LOGIN_STATUS,
 } from '../types';
 
 export const sendLoginForm = data => dispatch => {
@@ -26,9 +27,9 @@ const sendFormSuccess = (dispatch, data, response) => {
     localStorage.removeItem('email');
   }
   localStorage.setItem('token', response.data.token);
+  localStorage.setItem('username', data.email);
   dispatch({
     type: LOGIN_FORM_SUCCESS,
-    auth: response.data,
     message: 'Giris Yapildi',
   });
 };
@@ -47,3 +48,17 @@ const sendFormError = (dispatch, data, error) => {
     message,
   });
 };
+
+export const userLogin = () => dispatch => {
+  dispatch({
+    type: LOGIN_STATUS,
+    payload: true,
+  });
+}
+
+export const userLogout = () => dispatch => {
+  dispatch({
+    type: LOGIN_STATUS,
+    payload: false,
+  });
+}

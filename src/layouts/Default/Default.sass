@@ -2,10 +2,23 @@
   &-leftPanel
     padding: 25px
     height: calc(100vh - 76px)
-
+    position: fixed
+    left: 0
+    bottom: 0
     nav
       a
         display: block
         padding: 5px 0
+
   &-content
     padding: 25px
+    height: calc(100vh - 76px)
+    overflow: hidden
+    overflow-y: auto
+    right: 0
+    position: absolute
+    bottom: 0
+    h2
+      font-weight: 700
+      font-size: 18px
+      margin: 0 0 24px

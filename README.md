@@ -2,6 +2,10 @@
 
 # Initialization
 
+```
+$ npm install -g local-cors-proxy
+```
+
 `yarn` or `yarn install`
 
 If the Yarn package isn't:
@@ -9,4 +13,16 @@ If the Yarn package isn't:
 
 # Started
 
-`yarn start-proxy`, `yarn start` and `yarn watch-css`
+**at separate terminals**
+
+```
+$ yarn start-proxy
+```
+
+```
+$ yarn start
+```
+
+```
+$ yarn watch-css
+```
