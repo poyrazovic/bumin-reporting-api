@@ -67,7 +67,8 @@ module.exports = {
 
     // Ensure <a> tags are valid
     // https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/anchor-is-valid.md
-    "jsx-a11y/href-no-hash": "off",
+    'jsx-a11y/href-no-hash': 'off',
+    'jsx-a11y/label-has-for': 'off',
     'jsx-a11y/anchor-is-valid': [
       'error',
       {

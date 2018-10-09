@@ -1,23 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
+import $ from 'jquery';
 import { required } from '../../redux/form-validations';
 import { sendLoginForm, userLogin } from '../../redux/actions';
-import $ from 'jquery';
 import Input from '../Form-Elements/Input/Input';
 import Checkbox from '../Form-Elements/Checkbox/Checkbox';
 import './Login-Form.css';
 
 export class LoginForm extends Component {
-  componentDidMount() {
-    window.addEventListener('load', this.handleLoad.bind(this));
-    $('#email').focus();
-    let email = this.getEmail();
-    email = email || '';
-    this.props.change('email', email);
-  }
-
-  getEmail() {
+  static getEmail() {
     const email = String(localStorage.getItem('email'));
     if (!!email && email !== '' && email !== 'null') {
       return email;
@@ -25,11 +17,12 @@ export class LoginForm extends Component {
     return '';
   }
 
-  handleLoad() {
-    this.updateRemaining();
+  static handleLoad() {
+    LoginForm.updateRemaining();
   }
 
-  updateRemaining() {
+  // eslint-disable-next-line class-methods-use-this
+  static updateRemaining() {
     const email = String(localStorage.getItem('email'));
     if (email && email !== '' && email !== 'null') {
       $('input[name="remaining"]').prop('checked', true);
@@ -37,9 +30,41 @@ export class LoginForm extends Component {
     return '';
   }
 
+  componentDidMount() {
+    window.addEventListener('load', LoginForm.handleLoad.bind(this));
+    $('#email').focus();
+    let email = LoginForm.getEmail();
+    email = email || '';
+    this.props.change('email', email); // eslint-disable-line react/prop-types
+  }
+
+  submit(data) {
+    const DATA = data;
+    $('.Form-group').removeClass('Form-group--error');
+    let errorStatus = false;
+    if (required(DATA.email)) {
+      $('.Form-group--email').addClass('Form-group--error');
+      errorStatus = true;
+    }
+    if (required(DATA.password)) {
+      $('.Form-group--password').addClass('Form-group--error');
+      errorStatus = true;
+    }
+    if (errorStatus) {
+      return;
+    }
+    $('.Login-Form')
+      .find('input, textarea, button')
+      .blur();
+    DATA.remaining = $('input[name="remaining"]:checked').length > 0;
+    this.props.sendLoginForm(DATA); // eslint-disable-line react/prop-types
+    this.props.userLogin(); // eslint-disable-line react/prop-types
+  }
+
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit } = this.props; // eslint-disable-line react/prop-types
     return (
+      // eslint-disable jsx-a11y/label-has-for
       <div className="Login-Form">
         <form
           onSubmit={handleSubmit(data => {
@@ -53,7 +78,6 @@ export class LoginForm extends Component {
             <Input
               className="Input"
               name="email"
-              ref="email"
               autoComplete="off"
               id="email"
               component="input"
@@ -75,11 +99,7 @@ export class LoginForm extends Component {
             <span className="Error">Required!</span>
           </div>
           <div className="Form-group Form-group--checkbox mb-3">
-            <Checkbox
-              name="remaining"
-              id="remaining"
-              size={'small'}
-            />
+            <Checkbox name="remaining" id="remaining" size="small" />
             <label className="Label Label--checkbox" htmlFor="remaining">
               Beni Hatırla
             </label>
@@ -91,49 +111,28 @@ export class LoginForm extends Component {
           </div>
         </form>
       </div>
+      // eslint-enable jsx-a11y/label-has-for
     );
-  }
-
-  submit(data) {
-    $('.Form-group').removeClass('Form-group--error');
-    let errorStatus = false;
-    if (required(data.email)) {
-      $('.Form-group--email').addClass('Form-group--error');
-      errorStatus = true;
-    }
-    if (required(data.password)) {
-      $('.Form-group--password').addClass('Form-group--error');
-      errorStatus = true;
-    }
-    if (errorStatus) {
-      return;
-    }
-    $('.Login-Form').find('input, textarea, button').blur();
-    data.remaining = $('input[name="remaining"]:checked').length > 0;
-    this.props.sendLoginForm(data);
-    this.props.userLogin();
   }
 }
 
 const mapStateToProps = ({ loginReducers }) => {
-  const {
-    loading,
-    auth,
-    message,
-    messageStatus,
-  } = loginReducers;
+  const { loading, auth, message, messageStatus } = loginReducers;
   return {
     loading,
     auth,
     message,
-    messageStatus,
+    messageStatus
   };
 };
 
-export default connect(mapStateToProps, {
-  sendLoginForm,
-  userLogin,
-})(
+export default connect(
+  mapStateToProps,
+  {
+    sendLoginForm,
+    userLogin
+  }
+)(
   reduxForm({
     form: 'login'
   })(LoginForm)

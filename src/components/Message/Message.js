@@ -1,14 +1,12 @@
-import React, {Component} from 'react';
-import {Modal} from 'reactstrap';
-
+import React, { Component } from 'react';
+import { Modal } from 'reactstrap';
 import './Message.css';
-import {connect} from 'react-redux';
 
 class Message extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      messageStatus: !!props.messageStatus
+      messageStatus: !!props.messageStatus // eslint-disable-line react/prop-types
     };
 
     this.closeMessage = this.closeMessage.bind(this);
@@ -19,25 +17,28 @@ class Message extends Component {
       messageStatus: false
     });
     setTimeout(() => {
+      // eslint-disable-next-line react/prop-types
       if (this.props.closeMessage) {
-        this.props.closeMessage()
+        this.props.closeMessage();
       }
     }, 500);
   }
 
   renderTitle() {
+    // eslint-disable-next-line react/prop-types
     if (typeof this.props.title === 'string') {
       return <h4 className="modal-title">{this.props.title}</h4>;
-    } else {
-      return this.props.title;
     }
+    return this.props.title;
   }
 
   renderFooter() {
+    // eslint-disable-next-line react/prop-types
     if (this.props.footer) {
       return this.props.footer;
-    } else {
-      return <button
+    }
+    return (
+      <button
         type="button"
         className="btn btn btn-outline-secondary Default-button Default-button--transparent"
         onClick={() => {
@@ -45,21 +46,20 @@ class Message extends Component {
         }}
       >
         Kapat
-      </button>;
-    }
+      </button>
+    );
   }
 
   render() {
     return (
       <div className="Message">
-        
         <Modal
           isOpen={this.state.messageStatus}
           toggle={() => {
             this.closeMessage();
           }}
           className={this.state.className}
-          size={this.props.size}
+          size={this.props.size /* eslint-disable-line react/prop-types */}
         >
           <div className="modal-header">
             {this.renderTitle()}
@@ -70,25 +70,17 @@ class Message extends Component {
                 this.closeMessage();
               }}
             >
-              <img src="/images/modal-close.svg" alt="close"/>
+              <img src="/images/modal-close.svg" alt="close" />
             </button>
           </div>
           <div className="modal-body">
-          {this.props.children}</div>
-          <div className="modal-footer">
-            {this.renderFooter()}
+            {this.props.children /* eslint-disable-line react/prop-types */}
           </div>
+          <div className="modal-footer">{this.renderFooter()}</div>
         </Modal>
       </div>
     );
   }
 }
 
-// eslint-disable-next-line no-empty-pattern
-const mapStateToProps = ({}) => {
-  return {};
-};
-
-export default connect(mapStateToProps, {})(
-  Message
-);
+export default Message;

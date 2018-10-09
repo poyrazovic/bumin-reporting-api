@@ -1,13 +1,13 @@
 import {
   CLIENT_FILTER,
   CLIENT_FILTER_SUCCESS,
-  CLIENT_FILTER_ERROR,
+  CLIENT_FILTER_ERROR
 } from '../../actions/types';
 
 const INITIAL_STATE = {
   loading: false,
   data: '',
-  error: '',
+  error: ''
 };
 
 const clientReducers = (state = INITIAL_STATE, action) => {
@@ -15,19 +15,19 @@ const clientReducers = (state = INITIAL_STATE, action) => {
     case CLIENT_FILTER:
       return {
         ...state,
-        loading: true,
+        loading: true
       };
     case CLIENT_FILTER_SUCCESS:
       return {
         ...state,
         data: action.data,
-        loading: false,
-      }
+        loading: false
+      };
     case CLIENT_FILTER_ERROR:
       return {
         ...state,
-        loading: false,
-      }
+        loading: false
+      };
     default:
       return state;
   }

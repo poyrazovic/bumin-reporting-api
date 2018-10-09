@@ -10,7 +10,7 @@ const buminReducers = combineReducers({
   loginReducers,
   transactionReportReducers,
   clientReducers,
-  form: formReducer,
+  form: formReducer
 });
 
 export default buminReducers;

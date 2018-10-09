@@ -4,26 +4,40 @@ import {
   UPDATE_END_DATE,
   TRANSACTION_REPORT_FILTER,
   TRANSACTION_REPORT_FILTER_SUCCESS,
-  TRANSACTION_REPORT_FILTER_ERROR,
+  TRANSACTION_REPORT_FILTER_ERROR
 } from '../types';
 
-export const updateStartDate = (date) => dispatch => {
+export const updateStartDate = date => dispatch => {
   dispatch({
     type: UPDATE_START_DATE,
-    payload: date,
+    payload: date
   });
-}
+};
 
-export const updateEndDate = (date) => dispatch => {
+export const updateEndDate = date => dispatch => {
   dispatch({
     type: UPDATE_END_DATE,
-    payload: date,
+    payload: date
   });
-}
+};
 
-export const transactionReportFilterData = (data) => dispatch => {
+const transactionReportSuccess = (dispatch, data, response) => {
   dispatch({
-    type: TRANSACTION_REPORT_FILTER,
+    type: TRANSACTION_REPORT_FILTER_SUCCESS,
+    data: response.data.response
+  });
+};
+
+const transactionReportError = (dispatch, error) => {
+  dispatch({
+    type: TRANSACTION_REPORT_FILTER_ERROR,
+    error
+  });
+};
+
+export const transactionReportFilterData = data => dispatch => {
+  dispatch({
+    type: TRANSACTION_REPORT_FILTER
   });
   go.transactionReport
     .post('', data)
@@ -33,18 +47,4 @@ export const transactionReportFilterData = (data) => dispatch => {
     .catch(error => {
       transactionReportError(dispatch, data, error);
     });
-}
-
-const transactionReportSuccess = (dispatch, data, response) => {
-  dispatch({
-    type: TRANSACTION_REPORT_FILTER_SUCCESS,
-    data: response.data.response,
-  });
-};
-
-const transactionReportError = (dispatch, error) => {
-  dispatch({
-    type: TRANSACTION_REPORT_FILTER_ERROR,
-    error,
-  });
 };

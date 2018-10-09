@@ -11,8 +11,11 @@ class Checkbox extends Component {
           {...this.props}
           data-size={this.props.size}
         />
-        <i className={'Checkbox-ok icon icon-checkmark'} data-size={this.props.size}></i>
-        <div className="Checkbox-bg"  data-size={this.props.size} />
+        <i
+          className="Checkbox-ok icon icon-checkmark"
+          data-size={this.props.size}
+        />
+        <div className="Checkbox-bg" data-size={this.props.size} />
       </div>
     );
   }

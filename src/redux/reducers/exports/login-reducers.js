@@ -2,7 +2,7 @@ import {
   LOGIN_FORM_SEND,
   LOGIN_FORM_SUCCESS,
   LOGIN_FORM_ERROR,
-  LOGIN_STATUS,
+  LOGIN_STATUS
 } from '../../actions/types';
 
 const INITIAL_STATE = {
@@ -10,7 +10,7 @@ const INITIAL_STATE = {
   messageStatus: false,
   message: '',
   loginSuccess: false,
-  loginStatus: false,
+  loginStatus: false
 };
 
 const loginReducers = (state = INITIAL_STATE, action) => {
@@ -19,7 +19,7 @@ const loginReducers = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         loading: true,
-        messageStatus: false,
+        messageStatus: false
       };
     case LOGIN_FORM_SUCCESS:
       return {
@@ -27,7 +27,7 @@ const loginReducers = (state = INITIAL_STATE, action) => {
         loading: false,
         messageStatus: true,
         message: action.message,
-        loginSuccess: true,
+        loginSuccess: true
       };
     case LOGIN_FORM_ERROR:
       return {
@@ -35,13 +35,13 @@ const loginReducers = (state = INITIAL_STATE, action) => {
         loading: false,
         messageStatus: true,
         message: action.message,
-        loginSuccess: false,
-      }
+        loginSuccess: false
+      };
     case LOGIN_STATUS:
       return {
         ...state,
         loginStatus: action.payload
-      }
+      };
     default:
       return state;
   }

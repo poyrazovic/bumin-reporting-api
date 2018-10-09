@@ -2,12 +2,27 @@ import * as go from '../../../client';
 import {
   CLIENT_FILTER,
   CLIENT_FILTER_SUCCESS,
-  CLIENT_FILTER_ERROR,
+  CLIENT_FILTER_ERROR
 } from '../types';
 
-export const clientFilter = (data) => dispatch => {
+const clientFilterSuccess = (dispatch, data, response) => {
   dispatch({
-    type: CLIENT_FILTER,
+    type: CLIENT_FILTER_SUCCESS,
+    data: response.data.customerInfo
+  });
+};
+
+const clientFilterError = (dispatch, error) => {
+  dispatch({
+    type: CLIENT_FILTER_ERROR,
+    error
+  });
+};
+
+// eslint-disable-next-line import/prefer-default-export
+export const clientFilter = data => dispatch => {
+  dispatch({
+    type: CLIENT_FILTER
   });
   go.clientAPI
     .post('', data)
@@ -17,18 +32,4 @@ export const clientFilter = (data) => dispatch => {
     .catch(error => {
       clientFilterError(dispatch, data, error);
     });
-}
-
-const clientFilterSuccess = (dispatch, data, response) => {
-  dispatch({
-    type: CLIENT_FILTER_SUCCESS,
-    data: response.data.customerInfo,
-  });
-};
-
-const clientFilterError = (dispatch, error) => {
-  dispatch({
-    type: CLIENT_FILTER_ERROR,
-    error,
-  });
 };

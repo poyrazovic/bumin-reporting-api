@@ -5,76 +5,74 @@ import * as API from './api';
 import store from '../redux/store';
 import { openDefaultErrorMessage } from '../redux/actions';
 
-const requestSuccess = (config) => {
-  const access_token = localStorage.getItem('token');
-  if (access_token && access_token !== '' && access_token.length > 0) {
-    config.headers.Authorization = access_token;
+const requestSuccess = config => {
+  const configure = config;
+  const accessToken = localStorage.getItem('token');
+  if (accessToken && accessToken !== '' && accessToken.length > 0) {
+    configure.headers.Authorization = accessToken;
   }
-  return config;
+  return configure;
 };
 
-const requestError = (error) => {
-  return Promise.reject(error);
-};
+const requestError = error => Promise.reject(error);
 
-const responseSuccess = (config) => {
-  return config;
-};
-  
-const responseError = (error) => {
-  console.log(error);
+const responseSuccess = config => config;
+
+const responseError = error => {
   const originalRequest = error.config;
+  // eslint-disable-next-line no-underscore-dangle
   if (error.response.status === 401 && !originalRequest._retry) {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
-    return <Redirect to={'/'} />;
-  } else {
-    let message = 'Şuan sunucuya bağlanılamıyor. Lütfen daha sonra tekrar deneyiniz.';
-    if (error.response && error.response.data && error.response.data.message) {
-      message = error.response.data.message;
-    }
-    store.dispatch(openDefaultErrorMessage(message));
+    return <Redirect to="/" />;
   }
+  let message =
+    'Şuan sunucuya bağlanılamıyor. Lütfen daha sonra tekrar deneyiniz.';
+  if (error.response && error.response.data && error.response.data.message) {
+    message = error.response.data.message;
+  }
+  store.dispatch(openDefaultErrorMessage(message));
+
   return Promise.reject(error);
 };
 
 const headerContent = {
   'Content-Type': 'application/json',
-  'Cache-Control': 'no-cache',
+  'Cache-Control': 'no-cache'
 };
 
 const headers = {
-  'Authorization': localStorage.getItem('token'),
+  Authorization: localStorage.getItem('token')
 };
 
 const allHeaders = {
   ...headers,
-  ...headerContent,
-}
+  ...headerContent
+};
 
 export const loginAPI = axios.create({
   baseURL: API.LOGIN,
-  headers: headerContent,
+  headers: headerContent
 });
 
 export const transactionReport = axios.create({
   baseURL: API.TRANSACTIONS_REPORT,
-  headers: allHeaders,
+  headers: allHeaders
 });
 
 export const transactionList = axios.create({
   baseURL: API.TRANSACTIONS_LIST,
-  headers: allHeaders,
+  headers: allHeaders
 });
 
 export const transaction = axios.create({
   baseURL: API.INFORMATION_OR_TRANSACTION,
-  headers: allHeaders,
+  headers: allHeaders
 });
 
 export const clientAPI = axios.create({
   baseURL: API.CLIENT,
-  headers: allHeaders,
+  headers: allHeaders
 });
 
 // Interceptor

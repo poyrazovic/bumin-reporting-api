@@ -13,8 +13,10 @@ export const USER_INFO_SUCCESS = 'user info success';
 export const UPDATE_START_DATE = 'update start date';
 export const UPDATE_END_DATE = 'update end date';
 export const TRANSACTION_REPORT_FILTER = 'transaction report filter';
-export const TRANSACTION_REPORT_FILTER_SUCCESS = 'transaction report filter success';
-export const TRANSACTION_REPORT_FILTER_ERROR = 'transaction report filter error';
+export const TRANSACTION_REPORT_FILTER_SUCCESS =
+  'transaction report filter success';
+export const TRANSACTION_REPORT_FILTER_ERROR =
+  'transaction report filter error';
 
 export const CLIENT_FILTER = 'client filter';
 export const CLIENT_FILTER_SUCCESS = 'client filter success';

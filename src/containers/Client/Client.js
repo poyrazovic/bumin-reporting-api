@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import moment from 'moment';
+import $ from 'jquery';
 import Default from '../../layouts/Default/Default';
 import Card from '../../components/Card/Card';
 import Input from '../../components/Form-Elements/Input/Input';
-import './Client.css';
 import { required } from '../../redux/form-validations';
-import $ from 'jquery';
 import { clientFilter } from '../../redux/actions';
+import './Client.css';
 
 class Client extends Component {
   submit(data) {
@@ -20,14 +20,14 @@ class Client extends Component {
     if (errorStatus) {
       return;
     }
-    this.props.clientFilter(data);
+    this.props.clientFilter(data); // eslint-disable-line react/prop-types
   }
 
   dataTableCustomerInfoRender() {
-    const { data } = this.props;
+    const { data } = this.props; // eslint-disable-line react/prop-types
     if (data) {
       return (
-        <Card heading={'Customer Info'}>
+        <Card heading="Customer Info">
           <div className="row">
             <div className="col-10">
               <div className="table-responsive">
@@ -35,23 +35,29 @@ class Client extends Component {
                   <tbody>
                     <tr>
                       <th scope="row">ID</th>
-                      <td>{ data.id }</td>
+                      <td>{data.id}</td>
                     </tr>
                     <tr>
                       <th scope="row">Email</th>
-                      <td>{ data.email }</td>
+                      <td>{data.email}</td>
                     </tr>
                     <tr>
                       <th scope="row">Number</th>
-                      <td>{ data.number }</td>
+                      <td>{data.number}</td>
                     </tr>
                     <tr>
                       <th scope="row">Birthday</th>
-                      <td>{ data.birthday !== null ? moment(data.birthday).format('DD.MM.YYYY') : 'Not specified' }</td>
+                      <td>
+                        {data.birthday !== null
+                          ? moment(data.birthday).format('DD.MM.YYYY')
+                          : 'Not specified'}
+                      </td>
                     </tr>
                     <tr>
                       <th scope="row">Gender</th>
-                      <td>{ data.gender !== null ? data.gender : 'Not specified' }</td>
+                      <td>
+                        {data.gender !== null ? data.gender : 'Not specified'}
+                      </td>
                     </tr>
                   </tbody>
                 </table>
@@ -63,23 +69,35 @@ class Client extends Component {
                   <tbody>
                     <tr>
                       <th scope="row">Expiry Month</th>
-                      <td>{ data.expiryMonth }</td>
+                      <td>{data.expiryMonth}</td>
                     </tr>
                     <tr>
                       <th scope="row">Expiry Year</th>
-                      <td>{ data.expiryYear }</td>
+                      <td>{data.expiryYear}</td>
                     </tr>
                     <tr>
                       <th scope="row">Created at</th>
-                      <td>{ data.created_at !== null ? moment(data.created_at).format('DD.MM.YYYY') : 'Not specified' }</td>
+                      <td>
+                        {data.created_at !== null
+                          ? moment(data.created_at).format('DD.MM.YYYY')
+                          : 'Not specified'}
+                      </td>
                     </tr>
                     <tr>
                       <th scope="row">Updated at</th>
-                      <td>{ data.updated_at !== null ? moment(data.updated_at).format('DD.MM.YYYY') : 'Not specified' }</td>
+                      <td>
+                        {data.updated_at !== null
+                          ? moment(data.updated_at).format('DD.MM.YYYY')
+                          : 'Not specified'}
+                      </td>
                     </tr>
                     <tr>
                       <th scope="row">Deleted at</th>
-                      <td>{ data.deleted_at !== null ? moment(data.deleted_at).format('DD.MM.YYYY') : 'Not specified' }</td>
+                      <td>
+                        {data.deleted_at !== null
+                          ? moment(data.deleted_at).format('DD.MM.YYYY')
+                          : 'Not specified'}
+                      </td>
                     </tr>
                   </tbody>
                 </table>
@@ -89,59 +107,66 @@ class Client extends Component {
         </Card>
       );
     }
+    return '';
   }
 
   dataTableBillingInfoRender() {
     const { data } = this.props;
     if (data) {
       return (
-        <Card heading={'Billing Info'}>
+        <Card heading="Billing Info">
           <div className="table-responsive">
             <table className="table">
               <tbody>
                 <tr>
                   <th scope="row">Name</th>
-                  <td>{ [data.billingTitle, data.billingFirstName, data.billingLastName].join(' ') }</td>
+                  <td>
+                    {[
+                      data.billingTitle,
+                      data.billingFirstName,
+                      data.billingLastName
+                    ].join(' ')}
+                  </td>
                 </tr>
                 <tr>
                   <th scope="row">Phone</th>
-                  <td>{ data.billingPhone }</td>
+                  <td>{data.billingPhone}</td>
                 </tr>
                 <tr>
                   <th scope="row">Company</th>
-                  <td>{ data.billingCompany }</td>
+                  <td>{data.billingCompany}</td>
                 </tr>
                 <tr>
                   <th scope="row">Address 1</th>
-                  <td>{ data.billingAddress1 }</td>
+                  <td>{data.billingAddress1}</td>
                 </tr>
                 <tr>
                   <th scope="row">Address 2</th>
-                  <td>{ data.billingAddress2 ? data.billingAddress2 : '-' }</td>
+                  <td>{data.billingAddress2 ? data.billingAddress2 : '-'}</td>
                 </tr>
                 <tr>
                   <th scope="row">City</th>
-                  <td>{ data.billingCity }</td>
+                  <td>{data.billingCity}</td>
                 </tr>
                 <tr>
                   <th scope="row">Postcode</th>
-                  <td>{ data.billingPostcode }</td>
+                  <td>{data.billingPostcode}</td>
                 </tr>
                 <tr>
                   <th scope="row">State</th>
-                  <td>{ data.billingState }</td>
+                  <td>{data.billingState}</td>
                 </tr>
                 <tr>
                   <th scope="row">Country</th>
-                  <td>{ data.billingCountry }</td>
+                  <td>{data.billingCountry}</td>
                 </tr>
                 <tr>
                   <th scope="row">Phone</th>
-                  <td>{ data.billingPhone }</td>
+                  <td>{data.billingPhone}</td>
                 </tr>
                 <tr>
                   <th scope="row">Fax</th>
-                  <td>{ data.billingFax !== null ? data.billingFax : '-' }</td>
+                  <td>{data.billingFax !== null ? data.billingFax : '-'}</td>
                 </tr>
               </tbody>
             </table>
@@ -149,59 +174,66 @@ class Client extends Component {
         </Card>
       );
     }
+    return '';
   }
 
   dataTableShippingInfoRender() {
     const { data } = this.props;
     if (data) {
       return (
-        <Card heading={'Shipping Info'}>
+        <Card heading="Shipping Info">
           <div className="table-responsive">
             <table className="table">
               <tbody>
                 <tr>
                   <th scope="row">Name</th>
-                  <td>{ [data.shippingTitle, data.shippingFirstName, data.shippingLastName].join(' ') }</td>
+                  <td>
+                    {[
+                      data.shippingTitle,
+                      data.shippingFirstName,
+                      data.shippingLastName
+                    ].join(' ')}
+                  </td>
                 </tr>
                 <tr>
                   <th scope="row">Phone</th>
-                  <td>{ data.shippingPhone }</td>
+                  <td>{data.shippingPhone}</td>
                 </tr>
                 <tr>
                   <th scope="row">Company</th>
-                  <td>{ data.shippingCompany }</td>
+                  <td>{data.shippingCompany}</td>
                 </tr>
                 <tr>
                   <th scope="row">Address 1</th>
-                  <td>{ data.shippingAddress1 }</td>
+                  <td>{data.shippingAddress1}</td>
                 </tr>
                 <tr>
                   <th scope="row">Address 2</th>
-                  <td>{ data.shippingAddress2 ? data.shippingAddress2 : '-' }</td>
+                  <td>{data.shippingAddress2 ? data.shippingAddress2 : '-'}</td>
                 </tr>
                 <tr>
                   <th scope="row">City</th>
-                  <td>{ data.shippingCity }</td>
+                  <td>{data.shippingCity}</td>
                 </tr>
                 <tr>
                   <th scope="row">Postcode</th>
-                  <td>{ data.shippingPostcode }</td>
+                  <td>{data.shippingPostcode}</td>
                 </tr>
                 <tr>
                   <th scope="row">State</th>
-                  <td>{ data.shippingState }</td>
+                  <td>{data.shippingState}</td>
                 </tr>
                 <tr>
                   <th scope="row">Country</th>
-                  <td>{ data.shippingCountry }</td>
+                  <td>{data.shippingCountry}</td>
                 </tr>
                 <tr>
                   <th scope="row">Phone</th>
-                  <td>{ data.shippingPhone }</td>
+                  <td>{data.shippingPhone}</td>
                 </tr>
                 <tr>
                   <th scope="row">Fax</th>
-                  <td>{ data.shippingFax !== null ? data.shippingFax : '-' }</td>
+                  <td>{data.shippingFax !== null ? data.shippingFax : '-'}</td>
                 </tr>
               </tbody>
             </table>
@@ -209,12 +241,13 @@ class Client extends Component {
         </Card>
       );
     }
+    return '';
   }
 
   render() {
-    const { handleSubmit, data } = this.props;
+    const { handleSubmit } = this.props; // eslint-disable-line react/prop-types
     return (
-      <Default leftPanel pageTitle={'Client'}>
+      <Default leftPanel pageTitle="Client">
         <div className="Client">
           <Card>
             <form
@@ -231,7 +264,6 @@ class Client extends Component {
                     <Input
                       className="Input"
                       name="transactionId"
-                      ref="transactionId"
                       autoComplete="off"
                       id="transactionId"
                       component="input"
@@ -247,15 +279,9 @@ class Client extends Component {
             </form>
           </Card>
           <div className="row">
-            <div className="col-20">
-              { this.dataTableCustomerInfoRender() }
-            </div>
-            <div className="col-10">
-              { this.dataTableBillingInfoRender() }
-            </div>
-            <div className="col-10">
-              { this.dataTableShippingInfoRender() }
-            </div>
+            <div className="col-20">{this.dataTableCustomerInfoRender()}</div>
+            <div className="col-10">{this.dataTableBillingInfoRender()}</div>
+            <div className="col-10">{this.dataTableShippingInfoRender()}</div>
           </div>
         </div>
       </Default>
@@ -264,19 +290,19 @@ class Client extends Component {
 }
 
 const mapStateToProps = ({ clientReducers }) => {
-  const {
-    loading,
-    data,
-  } = clientReducers;
+  const { loading, data } = clientReducers;
   return {
     loading,
-    data,
+    data
   };
 };
 
-export default connect(mapStateToProps, {
-  clientFilter,
-})(
+export default connect(
+  mapStateToProps,
+  {
+    clientFilter
+  }
+)(
   reduxForm({
     form: 'client'
   })(Client)

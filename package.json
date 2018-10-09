@@ -30,11 +30,9 @@
   "scripts": {
     "precommit": "lint-staged",
     "lint-js": "eslint --ignore-path .gitignore --ignore-pattern \"!**/.*\" .",
-    "lint-css": "stylelint \"src/**/*.{css,less,styl,scss,sass,sss}\"",
-    "lint": "yarn run lint-js && yarn run lint-css",
+    "lint": "yarn run lint-js",
     "fix-js": "yarn run lint-js --fix",
-    "fix-css": "yarn run lint-css --fix",
-    "fix": "yarn run fix-js && yarn run fix-css",
+    "fix": "yarn run fix-js",
     "start": "npm run build-css && react-scripts start",
     "build": "npm run build-css && react-scripts build",
     "test": "react-scripts test --env=jsdom",

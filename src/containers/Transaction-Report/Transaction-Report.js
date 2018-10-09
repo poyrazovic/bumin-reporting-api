@@ -7,10 +7,12 @@ import ReportForm from '../../components/Report-Form/Report-Form';
 class TransactionReport extends Component {
   render() {
     return (
-      <Default leftPanel pageTitle={'Transaction Report'}>
+      <Default leftPanel pageTitle="Transaction Report">
         <div className="TransactionReport">
           <ReportForm />
-          <DataTable items={ this.props.data } />
+          <DataTable
+            items={this.props.data /* eslint-disable-line react/prop-types */}
+          />
         </div>
       </Default>
     );
@@ -18,14 +20,13 @@ class TransactionReport extends Component {
 }
 
 const mapStateToProps = ({ transactionReportReducers }) => {
-  const {
-    data,
-  } = transactionReportReducers;
+  const { data } = transactionReportReducers;
   return {
-    data,
+    data
   };
 };
 
-export default connect(mapStateToProps, {})(
-  TransactionReport
-);
+export default connect(
+  mapStateToProps,
+  {}
+)(TransactionReport);

@@ -12,51 +12,55 @@ import Transaction from './containers/Transaction/Transaction';
 import Client from './containers/Client/Client';
 
 if (process.env.NODE_ENV === 'development') {
-  require('dotenv');
+  require('dotenv'); // eslint-disable-line global-require
 }
 
 class AppRouter extends Component {
-  renderRouter() {
-    if (!!localStorage.getItem('token')) {
+  static renderRouter() {
+    if (localStorage.getItem('token')) {
       return (
         <Switch>
-          <Route path="/dashboard" component={ Dashboard } />
-          <Route path="/transaction-report" component={ TransactionReport } />
-          <Route path="/transaction-list" component={ TransactionList } />
-          <Route path="/transaction" component={ Transaction } />
-          <Route path="/client" component={ Client } />
-          <Route path="/" exact render={() => <Redirect to="/dashboard" /> } />
-          <Route path="*" component={ PageError404 } />
+          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/transaction-report" component={TransactionReport} />
+          <Route path="/transaction-list" component={TransactionList} />
+          <Route path="/transaction" component={Transaction} />
+          <Route path="/client" component={Client} />
+          <Route path="/" exact render={() => <Redirect to="/dashboard" />} />
+          <Route path="*" component={PageError404} />
         </Switch>
       );
-    } else if (!localStorage.getItem('token') || localStorage.getItem('token') === '') {
-      return <Switch>
-        <Route path="/login" component={ Login } />
-        <Route path="/" exact render={() => <Redirect to="/login" /> } />
-        <Route path="*" exact render={() => <Redirect to="/login" /> } />
-      </Switch>;
+    } else if (
+      !localStorage.getItem('token') ||
+      localStorage.getItem('token') === ''
+    ) {
+      return (
+        <Switch>
+          <Route path="/login" component={Login} />
+          <Route path="/" exact render={() => <Redirect to="/login" />} />
+          <Route path="*" exact render={() => <Redirect to="/login" />} />
+        </Switch>
+      );
     }
+
+    return '';
   }
-  
+
   render() {
-    return (
-      this.renderRouter()
-    );
+    return AppRouter.renderRouter();
   }
 }
 
 const mapStateToProps = ({ globalReducers }) => {
-  const {
-    defaultErrorMessageStatus,
-    defaultErrorMessage,
-  } = globalReducers;
+  const { defaultErrorMessageStatus, defaultErrorMessage } = globalReducers;
   return {
     defaultErrorMessageStatus,
-    defaultErrorMessage,
+    defaultErrorMessage
   };
 };
 
-export default withRouter(connect(mapStateToProps, {
-})(
-  AppRouter
-));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    {}
+  )(AppRouter)
+);
