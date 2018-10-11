@@ -7,14 +7,14 @@ import Message from '../../components/Message/Message';
 import Header from '../../components/Header/Header';
 
 class Authentication extends Component {
+  /* eslint-disable react/prop-types */
   errorMessage() {
-    // eslint-disable-next-line react/prop-types
     if (this.props.defaultErrorMessageStatus) {
-      let title = 'HATA!';
-      let message = this.props.defaultErrorMessage; // eslint-disable-line react/prop-types
+      let title = 'Error';
+      let message = this.props.defaultErrorMessage;
       if (typeof this.props.defaultErrorMessage === 'object') {
-        title = this.props.defaultErrorMessage.title; // eslint-disable-line react/prop-types
-        message = this.props.defaultErrorMessage.message; // eslint-disable-line react/prop-types
+        title = this.props.defaultErrorMessage.title;
+        message = this.props.defaultErrorMessage.message;
       }
       return (
         <Message
@@ -22,7 +22,7 @@ class Authentication extends Component {
           title={<h5 className="modal-title Default-title mb-1">{title}</h5>}
           messageStatus={this.props.defaultErrorMessageStatus}
           closeMessage={() => {
-            this.props.closeDefaultErrorMessage(); // eslint-disable-line react/prop-types
+            this.props.closeDefaultErrorMessage();
           }}
         >
           <div className="position-relative">{message}</div>
@@ -38,13 +38,14 @@ class Authentication extends Component {
         <Header />
         <div className="Authentication">
           <div className="Content bg-white">
-            {this.props.children /* eslint-disable-line react/prop-types */}
+            {this.props.children}
             {this.errorMessage()}
           </div>
         </div>
       </div>
     );
   }
+  /* eslint-enable react/prop-types */
 }
 
 const mapStateToProps = ({ globalReducers }) => {

@@ -3,10 +3,11 @@ import { Modal } from 'reactstrap';
 import './Message.css';
 
 class Message extends Component {
+  /* eslint-disable react/prop-types */
   constructor(props) {
     super(props);
     this.state = {
-      messageStatus: !!props.messageStatus // eslint-disable-line react/prop-types
+      messageStatus: !!props.messageStatus
     };
 
     this.closeMessage = this.closeMessage.bind(this);
@@ -17,7 +18,6 @@ class Message extends Component {
       messageStatus: false
     });
     setTimeout(() => {
-      // eslint-disable-next-line react/prop-types
       if (this.props.closeMessage) {
         this.props.closeMessage();
       }
@@ -25,7 +25,6 @@ class Message extends Component {
   }
 
   renderTitle() {
-    // eslint-disable-next-line react/prop-types
     if (typeof this.props.title === 'string') {
       return <h4 className="modal-title">{this.props.title}</h4>;
     }
@@ -33,7 +32,6 @@ class Message extends Component {
   }
 
   renderFooter() {
-    // eslint-disable-next-line react/prop-types
     if (this.props.footer) {
       return this.props.footer;
     }
@@ -45,7 +43,7 @@ class Message extends Component {
           this.closeMessage();
         }}
       >
-        Kapat
+        Close
       </button>
     );
   }
@@ -59,7 +57,7 @@ class Message extends Component {
             this.closeMessage();
           }}
           className={this.state.className}
-          size={this.props.size /* eslint-disable-line react/prop-types */}
+          size={this.props.size}
         >
           <div className="modal-header">
             {this.renderTitle()}
@@ -73,14 +71,13 @@ class Message extends Component {
               <i className="icon icon-cross" />
             </button>
           </div>
-          <div className="modal-body">
-            {this.props.children /* eslint-disable-line react/prop-types */}
-          </div>
+          <div className="modal-body">{this.props.children}</div>
           <div className="modal-footer">{this.renderFooter()}</div>
         </Modal>
       </div>
     );
   }
+  /* eslint-enable react/prop-types */
 }
 
 export default Message;

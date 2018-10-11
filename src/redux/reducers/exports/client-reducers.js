@@ -3,7 +3,7 @@ import { CLIENT_FILTER, CLIENT_FILTER_SUCCESS, CLIENT_FILTER_ERROR } from '../..
 const INITIAL_STATE = {
   loading: false,
   data: '',
-  error: ''
+  isFilter: false
 };
 
 const clientReducers = (state = INITIAL_STATE, action) => {
@@ -17,12 +17,14 @@ const clientReducers = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         data: action.data,
-        loading: false
+        loading: false,
+        isFilter: true
       };
     case CLIENT_FILTER_ERROR:
       return {
         ...state,
-        loading: false
+        loading: false,
+        isFilter: true
       };
     default:
       return state;

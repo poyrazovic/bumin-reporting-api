@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import './Card.css';
 
 class Card extends Component {
+  /* eslint-disable react/prop-types */
   cardHeading() {
-    // eslint-disable-next-line react/prop-types
     if (this.props.heading) {
       return <h3 className="text-primary">{this.props.heading}</h3>;
     }
@@ -13,10 +13,11 @@ class Card extends Component {
     return (
       <div className="Card bg-white p-4 mb-4">
         {this.cardHeading()}
-        {this.props.children /* eslint-disable-line react/prop-types */}
+        {this.props.children}
       </div>
     );
   }
+  /* eslint-enable react/prop-types */
 }
 
 export default Card;

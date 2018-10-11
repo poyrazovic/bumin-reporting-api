@@ -11,7 +11,7 @@ const sendFormSuccess = (dispatch, data, response) => {
   localStorage.setItem('username', data.email);
   dispatch({
     type: LOGIN_FORM_SUCCESS,
-    message: 'Giris Yapildi'
+    message: 'Login Success'
   });
 };
 
@@ -19,7 +19,7 @@ const sendFormError = (dispatch, data, error) => {
   const message =
     error.response && error.response.data && error.response.data.message
       ? error.response.data.message
-      : 'Bir hata olustu! Lutfen daha sonra tekrar deneyiniz...';
+      : 'Something went wrong! Please try again later...';
   dispatch({
     type: LOGIN_FORM_ERROR,
     error,
@@ -44,7 +44,6 @@ export const sendLoginForm = data => dispatch => {
 export const userLogin = () => dispatch => {
   dispatch({
     type: LOGIN_STATUS,
-    payload: true,
     loginStatus: true
   });
 };
@@ -52,7 +51,6 @@ export const userLogin = () => dispatch => {
 export const userLogout = () => dispatch => {
   dispatch({
     type: LOGIN_STATUS,
-    payload: false,
     loginStatus: false
   });
 };

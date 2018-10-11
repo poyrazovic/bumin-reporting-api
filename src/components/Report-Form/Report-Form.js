@@ -12,7 +12,6 @@ import {
 import Input from '../Form-Elements/Input/Input';
 import CDayPickerInput from '../Form-Elements/Day-Picker/Day-Picker';
 import Card from '../Card/Card';
-import './Report-Form.css';
 
 class ReportForm extends Component {
   submit(data) {
@@ -21,6 +20,7 @@ class ReportForm extends Component {
       toDate: this.props.endDate, // eslint-disable-line react/prop-types
       ...data
     };
+    $('.Form-group').removeClass('Form-group--error');
     let errorStatus = false;
     if (required(datas.fromDate)) {
       $('.Form-group--fromDate').addClass('Form-group--error');
@@ -122,7 +122,7 @@ class ReportForm extends Component {
                 </div>
               </div>
               <div className="col-2">
-                <button className="btn btn-primary">SEND</button>
+                <button className="btn btn-primary RequestButton">SEND</button>
               </div>
             </div>
           </form>

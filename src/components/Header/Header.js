@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+
 import { history } from '../../helpers';
+import { userLogout } from '../../redux/actions';
 import './Header.css';
 
 class Header extends Component {
+  /* eslint-disable react/prop-types */
   logout() {
-    // eslint-disable-next-line react/prop-types
+    this.props.userLogout();
     if (!this.props.loginStatus) {
       return <Redirect to="/login" />;
     }
     return '';
   }
+  /* eslint-enable react/prop-types */
 
   logoutButton() {
     if (localStorage.getItem('token')) {
@@ -64,5 +68,7 @@ const mapStateToProps = ({ loginReducers }) => {
 
 export default connect(
   mapStateToProps,
-  {}
+  {
+    userLogout
+  }
 )(Header);

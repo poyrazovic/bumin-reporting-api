@@ -2,7 +2,8 @@ import { TRANSACTION, TRANSACTION_SUCCESS, TRANSACTION_ERROR } from '../../actio
 
 const INITIAL_STATE = {
   data: '',
-  loading: false
+  loading: false,
+  isFilter: false
 };
 
 const transactionReducers = (state = INITIAL_STATE, action) => {
@@ -16,12 +17,14 @@ const transactionReducers = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         loading: false,
-        data: action.data
+        data: action.data,
+        isFilter: true
       };
     case TRANSACTION_ERROR:
       return {
         ...state,
-        loading: false
+        loading: false,
+        isFilter: true
       };
     default:
       return state;

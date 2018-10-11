@@ -1,5 +1,3 @@
-import React from 'react';
-import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import * as API from './api';
 import store from '../redux/store';
@@ -20,19 +18,12 @@ const responseSuccess = config => config;
 
 const responseError = error => {
   const originalRequest = error.config;
-  console.log('err', error);
   // eslint-disable-next-line no-underscore-dangle
   if (error.response.status === 401 && !originalRequest._retry) {
     localStorage.removeItem('token');
     localStorage.removeItem('username');
-    return <Redirect to="/" />;
+    store.dispatch(openDefaultErrorMessage('For security reasons you need to log in again.'));
   }
-  let message = 'Şuan sunucuya bağlanılamıyor. Lütfen daha sonra tekrar deneyiniz.';
-  if (error.response && error.response.data && error.response.data.message) {
-    message = error.response.data.message;
-  }
-  store.dispatch(openDefaultErrorMessage(message));
-
   return Promise.reject(error);
 };
 

@@ -13,7 +13,8 @@ const INITIAL_STATE = {
   items: '',
   prevLink: null,
   nextLink: null,
-  loading: false
+  loading: false,
+  isFilter: false
 };
 
 const transactionListReducers = (state = INITIAL_STATE, action) => {
@@ -30,12 +31,14 @@ const transactionListReducers = (state = INITIAL_STATE, action) => {
         data: action.data,
         items: action.data.data,
         prevLink: action.data.prev_page_url,
-        nextLink: action.data.next_page_url
+        nextLink: action.data.next_page_url,
+        isFilter: true
       };
     case TRANSACTION_LIST_ERROR:
       return {
         ...state,
-        loading: false
+        loading: false,
+        isFilter: true
       };
     case TRANSACTION_LIST_START_DATE:
       return {

@@ -133,7 +133,7 @@ class TransactionList extends Component {
                   </div>
                 </div>
                 <div className="col-2">
-                  <button className="btn btn-primary">SEND</button>
+                  <button className="btn btn-primary RequestButton">SEND</button>
                 </div>
               </div>
             </form>
@@ -148,7 +148,16 @@ class TransactionList extends Component {
 }
 
 const mapStateToProps = ({ transactionListReducers }) => {
-  const { data, startDate, endDate, prevLink, nextLink, loading, items } = transactionListReducers;
+  const {
+    data,
+    startDate,
+    endDate,
+    prevLink,
+    nextLink,
+    loading,
+    items,
+    isFilter
+  } = transactionListReducers;
   return {
     data,
     startDate,
@@ -156,7 +165,8 @@ const mapStateToProps = ({ transactionListReducers }) => {
     prevLink,
     nextLink,
     loading,
-    items
+    items,
+    isFilter
   };
 };
 

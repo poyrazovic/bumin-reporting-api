@@ -7,8 +7,6 @@ if (
   api = process.env.REACT_APP_DEVELOPMENT_API;
 }
 
-console.log(api);
-
 export const API = api;
 export const LOGIN = `${API}/merchant/user/login`;
 export const TRANSACTIONS_REPORT = `${API}/transactions/report`;

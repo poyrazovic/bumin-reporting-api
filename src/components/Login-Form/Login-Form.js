@@ -106,12 +106,12 @@ class LoginForm extends Component {
           <div className="Form-group Form-group--checkbox mb-3">
             <Checkbox name="remaining" id="remaining" size="small" />
             <label className="Label Label--checkbox" htmlFor="remaining">
-              Beni Hatırla
+              Remember me
             </label>
           </div>
           <div className="Form-group">
             <button type="submit" className="btn btn-primary">
-              Giriş Yap
+              Login
             </button>
           </div>
         </form>
