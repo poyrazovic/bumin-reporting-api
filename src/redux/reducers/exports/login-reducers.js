@@ -9,7 +9,6 @@ const INITIAL_STATE = {
   loading: false,
   messageStatus: false,
   message: '',
-  loginSuccess: false,
   loginStatus: false
 };
 
@@ -19,7 +18,8 @@ const loginReducers = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         loading: true,
-        messageStatus: false
+        messageStatus: false,
+        loginStatus: false
       };
     case LOGIN_FORM_SUCCESS:
       return {
@@ -27,7 +27,7 @@ const loginReducers = (state = INITIAL_STATE, action) => {
         loading: false,
         messageStatus: true,
         message: action.message,
-        loginSuccess: true
+        loginStatus: true
       };
     case LOGIN_FORM_ERROR:
       return {
@@ -35,12 +35,12 @@ const loginReducers = (state = INITIAL_STATE, action) => {
         loading: false,
         messageStatus: true,
         message: action.message,
-        loginSuccess: false
+        loginStatus: false
       };
     case LOGIN_STATUS:
       return {
         ...state,
-        loginStatus: action.payload
+        loginStatus: action.loginStatus
       };
     default:
       return state;

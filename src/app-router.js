@@ -25,14 +25,12 @@ class AppRouter extends Component {
           <Route path="/transaction-list" component={TransactionList} />
           <Route path="/transaction" component={Transaction} />
           <Route path="/client" component={Client} />
+          <Route path="/login" render={() => <Redirect to="/dashboard" />} />
           <Route path="/" exact render={() => <Redirect to="/dashboard" />} />
           <Route path="*" component={PageError404} />
         </Switch>
       );
-    } else if (
-      !localStorage.getItem('token') ||
-      localStorage.getItem('token') === ''
-    ) {
+    } else if (!localStorage.getItem('token') || localStorage.getItem('token') === '') {
       return (
         <Switch>
           <Route path="/login" component={Login} />

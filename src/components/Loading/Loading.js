@@ -2,16 +2,18 @@ import React, { Component } from 'react';
 import './Loading.css';
 
 class Loading extends Component {
+  /* eslint-disable react/prop-types */
   render() {
     return (
-      // eslint-disable-next-line react/prop-types
       <div className={['Loading', this.props.status ? 'active' : ''].join(' ')}>
         <div className="Loading-inner">
-          <p>Yukleniyor...</p>
+          <h3>{this.props.heading ? this.props.heading : 'Loading'}</h3>
+          <p>{this.props.children ? this.props.children : 'Please waiting!'}</p>
         </div>
       </div>
     );
   }
+  /* eslint-enable react/prop-types */
 }
 
 export default Loading;

@@ -6,9 +6,7 @@ import './DataTable.css';
 class DataTable extends Component {
   static dataTableHeading(items) {
     return Object.keys(items[0]).map(item => (
-      <th key={`${item.toString()}-${Math.floor(Math.random() * 1000)}`}>
-        {item}
-      </th>
+      <th key={`${item.toString()}-${Math.floor(Math.random() * 1000)}`}>{item}</th>
     ));
   }
 
@@ -16,9 +14,7 @@ class DataTable extends Component {
     return items.map(item => (
       <tr key={`${item.toString()}-${Math.floor(Math.random() * 1000)}`}>
         {Object.values(item).map(_item => (
-          <td key={`${item.toString()}-${Math.floor(Math.random() * 1000)}`}>
-            {_item}
-          </td>
+          <td key={`${item.toString()}-${Math.floor(Math.random() * 1000)}`}>{_item}</td>
         ))}
       </tr>
     ));

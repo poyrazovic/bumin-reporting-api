@@ -9,6 +9,7 @@ import Checkbox from '../Form-Elements/Checkbox/Checkbox';
 import './Login-Form.css';
 
 export class LoginForm extends Component {
+  /* eslint-disable react/prop-types */
   static getEmail() {
     const email = String(localStorage.getItem('email'));
     if (!!email && email !== '' && email !== 'null') {
@@ -35,7 +36,7 @@ export class LoginForm extends Component {
     $('#email').focus();
     let email = LoginForm.getEmail();
     email = email || '';
-    this.props.change('email', email); // eslint-disable-line react/prop-types
+    this.props.change('email', email);
   }
 
   submit(data) {
@@ -54,15 +55,15 @@ export class LoginForm extends Component {
       return;
     }
     $('.Login-Form')
-      .find('input, textarea, button')
+      .find('input, button')
       .blur();
     DATA.remaining = $('input[name="remaining"]:checked').length > 0;
-    this.props.sendLoginForm(DATA); // eslint-disable-line react/prop-types
-    this.props.userLogin(); // eslint-disable-line react/prop-types
+    this.props.sendLoginForm(DATA);
+    this.props.userLogin();
   }
 
   render() {
-    const { handleSubmit } = this.props; // eslint-disable-line react/prop-types
+    const { handleSubmit } = this.props;
     return (
       // eslint-disable jsx-a11y/label-has-for
       <div className="Login-Form">
@@ -114,15 +115,16 @@ export class LoginForm extends Component {
       // eslint-enable jsx-a11y/label-has-for
     );
   }
+  /* eslint-enable react/prop-types */
 }
 
 const mapStateToProps = ({ loginReducers }) => {
-  const { loading, auth, message, messageStatus } = loginReducers;
+  const { loading, message, messageStatus, loginStatus } = loginReducers;
   return {
     loading,
-    auth,
     message,
-    messageStatus
+    messageStatus,
+    loginStatus
   };
 };
 

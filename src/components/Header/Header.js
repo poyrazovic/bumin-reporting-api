@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { history } from '../../helpers';
-import { userLogout } from '../../redux/actions';
 import './Header.css';
 
 class Header extends Component {
@@ -22,7 +21,6 @@ class Header extends Component {
           onClick={() => {
             localStorage.removeItem('token');
             localStorage.removeItem('username');
-            this.props.userLogout(); // eslint-disable-line react/prop-types
             this.logout();
             history.push('/');
           }}
@@ -45,9 +43,7 @@ class Header extends Component {
             <div className="col-md-10">
               <div className="float-right">
                 <span className="mr-4">
-                  {localStorage.getItem('username')
-                    ? localStorage.getItem('username')
-                    : ''}
+                  {localStorage.getItem('username') ? localStorage.getItem('username') : ''}
                 </span>
                 {this.logoutButton()}
               </div>
@@ -60,16 +56,13 @@ class Header extends Component {
 }
 
 const mapStateToProps = ({ loginReducers }) => {
-  const { loginStatus, user } = loginReducers;
+  const { loginStatus } = loginReducers;
   return {
-    loginStatus,
-    user
+    loginStatus
   };
 };
 
 export default connect(
   mapStateToProps,
-  {
-    userLogout
-  }
+  {}
 )(Header);

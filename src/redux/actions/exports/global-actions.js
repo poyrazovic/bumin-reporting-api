@@ -1,7 +1,4 @@
-import {
-  CLOSE_DEFAULT_ERROR_MESSAGE,
-  OPEN_DEFAULT_ERROR_MESSAGE
-} from '../types';
+import { CLOSE_DEFAULT_ERROR_MESSAGE, OPEN_DEFAULT_ERROR_MESSAGE } from '../types';
 
 export const openDefaultErrorMessage = message => dispatch => {
   dispatch({

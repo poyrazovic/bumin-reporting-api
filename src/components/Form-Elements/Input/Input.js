@@ -18,11 +18,7 @@ class Input extends Component {
   }
 
   componentWillMount() {
-    if (
-      this.props.value !== undefined &&
-      this.props.formname &&
-      this.props.name
-    ) {
+    if (this.props.value !== undefined && this.props.formname && this.props.name) {
       store.dispatch(
         updateReduxFormField(this.props.formname, {
           identifier: this.props.name,
@@ -34,13 +30,7 @@ class Input extends Component {
 
   renderIcon() {
     if (this.props.icon) {
-      return (
-        <i
-          className={['Input-icon', 'icon', `icon-${this.props.icon}`].join(
-            ' '
-          )}
-        />
-      );
+      return <i className={['Input-icon', 'icon', `icon-${this.props.icon}`].join(' ')} />;
     }
     return '';
   }

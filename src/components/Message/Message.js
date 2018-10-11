@@ -70,7 +70,7 @@ class Message extends Component {
                 this.closeMessage();
               }}
             >
-              <img src="/images/modal-close.svg" alt="close" />
+              <i className="icon icon-cross" />
             </button>
           </div>
           <div className="modal-body">

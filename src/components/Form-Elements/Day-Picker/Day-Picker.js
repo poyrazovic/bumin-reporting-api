@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import moment from 'moment';
-import MomentLocaleUtils, {
-  formatDate,
-  parseDate
-} from 'react-day-picker/moment';
+import MomentLocaleUtils, { formatDate, parseDate } from 'react-day-picker/moment';
 import 'moment/locale/tr';
 import './Day-Picker.css';
 
@@ -25,13 +22,7 @@ class CDayPickerInput extends Component {
 
   renderIcon() {
     if (this.props.icon) {
-      return (
-        <i
-          className={['Input-icon', 'icon', `icon-${this.props.icon}`].join(
-            ' '
-          )}
-        />
-      );
+      return <i className={['Input-icon', 'icon', `icon-${this.props.icon}`].join(' ')} />;
     }
     return '';
   }

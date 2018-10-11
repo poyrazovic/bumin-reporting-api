@@ -1,8 +1,4 @@
-import {
-  CLIENT_FILTER,
-  CLIENT_FILTER_SUCCESS,
-  CLIENT_FILTER_ERROR
-} from '../../actions/types';
+import { CLIENT_FILTER, CLIENT_FILTER_SUCCESS, CLIENT_FILTER_ERROR } from '../../actions/types';
 
 const INITIAL_STATE = {
   loading: false,

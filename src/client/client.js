@@ -26,8 +26,7 @@ const responseError = error => {
     localStorage.removeItem('username');
     return <Redirect to="/" />;
   }
-  let message =
-    'Şuan sunucuya bağlanılamıyor. Lütfen daha sonra tekrar deneyiniz.';
+  let message = 'Şuan sunucuya bağlanılamıyor. Lütfen daha sonra tekrar deneyiniz.';
   if (error.response && error.response.data && error.response.data.message) {
     message = error.response.data.message;
   }

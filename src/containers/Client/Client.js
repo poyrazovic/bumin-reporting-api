@@ -9,9 +9,11 @@ import Input from '../../components/Form-Elements/Input/Input';
 import { required } from '../../redux/form-validations';
 import { clientFilter } from '../../redux/actions';
 import './Client.css';
+import Loading from '../../components/Loading/Loading';
 
 class Client extends Component {
   submit(data) {
+    $('.Form-group').removeClass('Form-group--error');
     let errorStatus = false;
     if (required(data.transactionId)) {
       $('.Form-group--transactionId').addClass('Form-group--error');
@@ -55,9 +57,7 @@ class Client extends Component {
                     </tr>
                     <tr>
                       <th scope="row">Gender</th>
-                      <td>
-                        {data.gender !== null ? data.gender : 'Not specified'}
-                      </td>
+                      <td>{data.gender !== null ? data.gender : 'Not specified'}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -121,11 +121,7 @@ class Client extends Component {
                 <tr>
                   <th scope="row">Name</th>
                   <td>
-                    {[
-                      data.billingTitle,
-                      data.billingFirstName,
-                      data.billingLastName
-                    ].join(' ')}
+                    {[data.billingTitle, data.billingFirstName, data.billingLastName].join(' ')}
                   </td>
                 </tr>
                 <tr>
@@ -188,11 +184,7 @@ class Client extends Component {
                 <tr>
                   <th scope="row">Name</th>
                   <td>
-                    {[
-                      data.shippingTitle,
-                      data.shippingFirstName,
-                      data.shippingLastName
-                    ].join(' ')}
+                    {[data.shippingTitle, data.shippingFirstName, data.shippingLastName].join(' ')}
                   </td>
                 </tr>
                 <tr>
@@ -249,6 +241,8 @@ class Client extends Component {
     return (
       <Default leftPanel pageTitle="Client">
         <div className="Client">
+          {/* eslint-disable-next-line react/prop-types */}
+          <Loading status={this.props.loading} />
           <Card>
             <form
               onSubmit={handleSubmit(data => {

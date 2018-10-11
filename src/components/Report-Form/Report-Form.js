@@ -5,8 +5,8 @@ import moment from 'moment';
 import $ from 'jquery';
 import { required } from '../../redux/form-validations';
 import {
-  updateStartDate,
-  updateEndDate,
+  updateTransactionReportStartDate,
+  updateTransactionReportEndDate,
   transactionReportFilterData
 } from '../../redux/actions';
 import Input from '../Form-Elements/Input/Input';
@@ -49,7 +49,6 @@ class ReportForm extends Component {
             <div className="row">
               <div className="col-10">
                 <div className="Form-group Form-group--fromDate">
-                  {/* eslint-disable-next-line jsx-a11y/label-has-for */}
                   <label className="Label" htmlFor="fromDate">
                     Start Date
                   </label>
@@ -62,9 +61,7 @@ class ReportForm extends Component {
                     type="text"
                     onDayChange={e => {
                       // eslint-disable-next-line react/prop-types
-                      this.props.updateStartDate(
-                        moment(e).format('YYYY-MM-DD')
-                      );
+                      this.props.updateTransactionReportStartDate(moment(e).format('YYYY-MM-DD'));
                     }}
                     locale="tr"
                   />
@@ -85,7 +82,7 @@ class ReportForm extends Component {
                     component="input"
                     type="text"
                     onDayChange={e => {
-                      this.props.updateEndDate(moment(e).format('YYYY-MM-DD')); // eslint-disable-line react/prop-types
+                      this.props.updateTransactionReportEndDate(moment(e).format('YYYY-MM-DD')); // eslint-disable-line react/prop-types
                     }}
                     locale="tr"
                   />
@@ -146,8 +143,8 @@ const mapStateToProps = ({ transactionReportReducers }) => {
 export default connect(
   mapStateToProps,
   {
-    updateStartDate,
-    updateEndDate,
+    updateTransactionReportStartDate,
+    updateTransactionReportEndDate,
     transactionReportFilterData
   }
 )(

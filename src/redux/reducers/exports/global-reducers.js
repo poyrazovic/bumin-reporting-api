@@ -1,7 +1,4 @@
-import {
-  OPEN_DEFAULT_ERROR_MESSAGE,
-  CLOSE_DEFAULT_ERROR_MESSAGE
-} from '../../actions/types';
+import { OPEN_DEFAULT_ERROR_MESSAGE, CLOSE_DEFAULT_ERROR_MESSAGE } from '../../actions/types';
 
 const INITIAL_STATE = {
   defaultErrorMessageStatus: false,

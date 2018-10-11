@@ -37,12 +37,7 @@ class Default extends Component {
     return (
       <div className="Default">
         <Header />
-        <div
-          className={[
-            'container-fluid',
-            !this.props.leftPanel ? 'text-center' : ''
-          ].join(' ')}
-        >
+        <div className={['container-fluid', !this.props.leftPanel ? 'text-center' : ''].join(' ')}>
           <div className="row d-flex align-items-stretch">
             {this.leftPanelViewer()}
             <div
@@ -51,12 +46,7 @@ class Default extends Component {
                 this.props.leftPanel ? 'col-md-16' : 'col-md-20'
               ].join(' ')}
             >
-              <h2>
-                {
-                  this.props
-                    .pageTitle /* eslint-disable-line react/prop-types */
-                }
-              </h2>
+              <h2>{this.props.pageTitle /* eslint-disable-line react/prop-types */}</h2>
               {this.props.children /* eslint-disable-line react/prop-types */}
             </div>
           </div>

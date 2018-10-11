@@ -7,14 +7,14 @@ import {
   TRANSACTION_REPORT_FILTER_ERROR
 } from '../types';
 
-export const updateStartDate = date => dispatch => {
+export const updateTransactionReportStartDate = date => dispatch => {
   dispatch({
     type: UPDATE_START_DATE,
     payload: date
   });
 };
 
-export const updateEndDate = date => dispatch => {
+export const updateTransactionReportEndDate = date => dispatch => {
   dispatch({
     type: UPDATE_END_DATE,
     payload: date

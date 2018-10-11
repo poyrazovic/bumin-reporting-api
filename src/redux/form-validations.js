@@ -3,9 +3,7 @@
 
 const isEmpty = value => value === undefined || value === null || value === '';
 const join = rules => (value, data, props) =>
-  rules
-    .map(rule => rule(value, data, props))
-    .filter(error => !!error)[0 /* first error */];
+  rules.map(rule => rule(value, data, props)).filter(error => !!error)[0 /* first error */];
 
 export const getBsFeedback = value => {
   let feedback;
@@ -22,10 +20,7 @@ export const getBsFeedback = value => {
 
 export const email = value => {
   // Let's not start a debate on email regex. This is just for an example app!
-  if (
-    !isEmpty(value) &&
-    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
-  ) {
+  if (!isEmpty(value) && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
     return 'Invalid email address';
   }
   return null;

@@ -10,9 +10,7 @@ class TransactionReport extends Component {
       <Default leftPanel pageTitle="Transaction Report">
         <div className="TransactionReport">
           <ReportForm />
-          <DataTable
-            items={this.props.data /* eslint-disable-line react/prop-types */}
-          />
+          <DataTable items={this.props.data /* eslint-disable-line react/prop-types */} />
         </div>
       </Default>
     );

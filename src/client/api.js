@@ -1,9 +1,5 @@
 let _API = 'http://localhost:8010/proxy/'; // eslint-disable-line no-underscore-dangle
-if (
-  process.env &&
-  process.env.REACT_APP_DEV_API_URL &&
-  process.env.NODE_ENV === 'development'
-) {
+if (process.env && process.env.REACT_APP_DEV_API_URL && process.env.NODE_ENV === 'development') {
   _API = process.env.REACT_APP_DEV_API_URL;
 }
 

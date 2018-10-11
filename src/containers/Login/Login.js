@@ -7,19 +7,16 @@ import Loading from '../../components/Loading/Loading';
 import './Login.css';
 
 class Login extends Component {
+  /* eslint-disable react/prop-types */
   redirectDashboard() {
-    return this.props.loginSuccess ? <Redirect to="/" /> : ''; // eslint-disable-line react/prop-types
+    return this.props.loginSuccess ? <Redirect to="/" /> : '';
   }
 
   render() {
     return (
       <div className="Login">
         <Authentication>
-          <Loading
-            status={
-              this.props.loading /* eslint-disable-line react/prop-types */
-            }
-          />
+          <Loading status={this.props.loading} heading="Signing in" />
           <h1>Login</h1>
           <LoginForm />
           {this.redirectDashboard()}
@@ -27,6 +24,7 @@ class Login extends Component {
       </div>
     );
   }
+  /* eslint-enable react/prop-types */
 }
 
 const mapStateToProps = ({ loginReducers }) => {

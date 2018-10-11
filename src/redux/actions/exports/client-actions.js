@@ -1,9 +1,5 @@
 import * as go from '../../../client';
-import {
-  CLIENT_FILTER,
-  CLIENT_FILTER_SUCCESS,
-  CLIENT_FILTER_ERROR
-} from '../types';
+import { CLIENT_FILTER, CLIENT_FILTER_SUCCESS, CLIENT_FILTER_ERROR } from '../types';
 
 const clientFilterSuccess = (dispatch, data, response) => {
   dispatch({
