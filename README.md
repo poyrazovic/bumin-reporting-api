@@ -1,6 +1,6 @@
 ## Bumin Reporting API
 
-# Initialization
+### Initialization
 
 ```
 $ npm install -g local-cors-proxy
@@ -11,7 +11,7 @@ $ npm install -g local-cors-proxy
 If the Yarn package isn't install:
 `npm i -g yarn`
 
-# Development
+### Development
 
 ```
 // .env file
@@ -33,7 +33,7 @@ $ yarn start
 $ yarn watch-css
 ```
 
-# Production
+### Production
 If the Serve (yarn package) isn't install:
 `$ yarn global add serve `
 
