@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import moment from 'moment';
 import $ from 'jquery';
+import moment from 'moment';
 import { required } from '../../redux/form-validations';
 import {
   updateTransactionReportStartDate,

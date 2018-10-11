@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
 import $ from 'jquery';
+import { Redirect } from 'react-router';
 import { required } from '../../redux/form-validations';
 import { sendLoginForm, userLogin } from '../../redux/actions';
 import Input from '../Form-Elements/Input/Input';
 import Checkbox from '../Form-Elements/Checkbox/Checkbox';
 import './Login-Form.css';
 
-export class LoginForm extends Component {
+class LoginForm extends Component {
   /* eslint-disable react/prop-types */
   static getEmail() {
     const email = String(localStorage.getItem('email'));
@@ -63,7 +64,10 @@ export class LoginForm extends Component {
   }
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, loginStatus } = this.props;
+    if (loginStatus && localStorage.getItem('token')) {
+      return <Redirect to="/dashboard" />;
+    }
     return (
       // eslint-disable jsx-a11y/label-has-for
       <div className="Login-Form">
