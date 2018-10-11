@@ -166,8 +166,8 @@ class Accordion extends Component {
   /* eslint-enable react/prop-types, class-methods-use-this, array-callback-return, react/no-array-index-key */
 }
 
-const mapStateToProps = ({ transactionList }) => {
-  const { loading } = transactionList;
+const mapStateToProps = ({ transactionListReducers }) => {
+  const { loading } = transactionListReducers;
   return {
     loading
   };

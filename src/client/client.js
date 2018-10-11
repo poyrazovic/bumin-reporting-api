@@ -20,6 +20,7 @@ const responseSuccess = config => config;
 
 const responseError = error => {
   const originalRequest = error.config;
+  console.log('err', error);
   // eslint-disable-next-line no-underscore-dangle
   if (error.response.status === 401 && !originalRequest._retry) {
     localStorage.removeItem('token');
